@@ -1,0 +1,101 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Detail";
+    bool check1=true;
+    bool check2 = true;
+}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs aos-init aos-animate" data-aos="fade-in">
+        <div class="container">
+            <h2>Course Details</h2>
+            <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <img src="~/assets/img/@Model.Image" class="img-fluid" alt="">
+                    <h3>@Model.Title</h3>
+                    <p>@Model.Description  </p>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Trainer</h5>
+                        <p><a href="#">@Model.Trainer?.Name</a></p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Course Fee</h5>
+                        <p>$@Model.Price</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Available Seats</h5>
+                        <p>@Model.Seat</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Schedule</h5>
+                        <p>@Model.Schedule</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cource Details Section -->
+    <!-- ======= Cource Details Tabs Section ======= -->
+    <section id="cource-details-tabs" class="cource-details-tabs">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+
+                        @foreach (Module module in Model.Modules)
+                        {
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link @(check1==true?"active show":"" )" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab">@module.Name</a>
+                            </li>
+
+                            check1 = false;
+
+                        }
+                       
+                    </ul>
+                </div>
+                <div class="col-lg-9 mt-4 mt-lg-0">
+                    <div class="tab-content">
+                        @foreach (Module module in Model.Modules)
+                        {
+                            <div class="tab-pane @(check2==true?"active show":"" )" id="tab-1" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    @module.Description
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src="~/assets/img/@module.Image" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                            </div>
+
+                            check2 = false;
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cource Details Tabs Section -->
+
+</main>
+
